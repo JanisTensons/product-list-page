@@ -16,12 +16,21 @@
   }
 }
 
+/* Extra small devices (phones) */
+@media only screen and (max-width: 600px) {
+  /* CSS styles for mobile devices */
+}
+
+/* Small devices (tablets) */
+@media only screen and (min-width: 601px) and (max-width: 992px) {
+  /* CSS styles for tablets */
+}
+
+/* Medium devices (desktops) */
+@media only screen and (min-width: 993px) {
+  /* CSS styles for desktops */
+}
+
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
 }
