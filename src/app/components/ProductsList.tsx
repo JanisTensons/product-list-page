@@ -7,13 +7,14 @@ const ProductsList: React.FC<ProductProps> = ({
   id,
   name,
   price,
+  currency,
   category,
 }) => {
-  const isSmallScreen = useMediaQuery({ maxWidth: 600 }); // Adjust the maxWidth value as needed
+  const isSmallScreen = useMediaQuery({ maxWidth: 600 });
+  const formattedPrice = price.toFixed(2);
 
   return (
     <Link href={`/products/${encodeURIComponent(id)}`}>
-      {/* Replace "/productName" with a dynamic route using productName */}
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
           <li className="pb-3 sm:pb-4">
@@ -26,8 +27,12 @@ const ProductsList: React.FC<ProductProps> = ({
                 >
                   {name}
                 </p>
-                <p className="text-sm text-gray-500 truncate dark:text-gray-400">
-                  {price}
+                <p
+                  className={`text-sm text-gray-500 ${
+                    isSmallScreen ? "" : "truncate"
+                  } dark:text-gray-400`}
+                >
+                  {currency} {formattedPrice}
                 </p>
               </div>
               <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
