@@ -5,6 +5,9 @@
 #### How to install
 
 - Clone project from GitHub
+  ```
+  https://github.com/JanisTensons/product-list-page.git
+  ```
 - Install the required dependencies
   ```bash
   npm install
