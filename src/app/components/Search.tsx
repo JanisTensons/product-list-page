@@ -43,7 +43,9 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
           type="text"
           id="default-search"
           className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-sky-500 focus:border-sky-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-sky-500"
-          placeholder={`${isSmallScreen ? "Search" : "Search products"}`}
+          placeholder={`${
+            isSmallScreen ? "Apple, ..." : "Search products by name"
+          }`}
           value={searchQuery}
           onChange={handleSearchChange}
           required
