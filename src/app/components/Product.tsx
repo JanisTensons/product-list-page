@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ProductProps } from "../../../types";
 import { CustomButton } from ".";
@@ -7,10 +6,13 @@ import { CustomButton } from ".";
 const Product: React.FC<ProductProps> = ({
   name,
   price,
+  currency,
   category,
   description,
 }) => {
   const router = useRouter();
+  const formattedPrice = price.toFixed(2);
+
   return (
     <div className="w-1/2 mx-auto">
       <div>
@@ -24,7 +26,9 @@ const Product: React.FC<ProductProps> = ({
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
               {name}
             </h5>
-            <p>{price}</p>
+            <p>
+              {currency} {formattedPrice}
+            </p>
           </div>
           <p className="text-sm text-gray-500 truncate dark:text-gray-400">
             {category}
@@ -40,7 +44,7 @@ const Product: React.FC<ProductProps> = ({
           type="submit"
           onClick={() => router.back()}
           containerStyles={
-            "text-white bg-emerald-600 hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover-bg-blue-700 dark:focus:ring-blue-800"
+            "mt-2 text-white bg-emerald-600 hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover-bg-blue-700 dark:focus:ring-blue-800"
           }
         />
       </div>
