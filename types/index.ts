@@ -11,9 +11,10 @@ export interface PaginationProps {
 }
 
 export interface ProductProps {
-  id: number;
+  id: number | string;
   name: string;
-  price: string;
+  price: number;
+  currency: string;
   category: string;
   description: string;
 }
