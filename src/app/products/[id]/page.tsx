@@ -2,41 +2,24 @@
 import Product from "@/app/components/Product";
 import { useState, useEffect } from "react";
 import { ProductProps } from "../../../../types";
+import { fetchProducts } from "../../../../utils";
 
-interface ProductParams {
-  id: string;
-}
-
-const FetchProducts = ({ params }: { params: ProductParams }) => {
-  const [products, setProducts] = useState<ProductProps[]>([]); // Initialize as an empty array
+const FetchProducts = ({ params }: { params: ProductProps }) => {
+  const [products, setProducts] = useState<ProductProps[]>([]);
   const id = params.id;
 
   useEffect(() => {
-    // Fetch data here
+    const fetchData = async () => {
+      try {
+        const allProducts = await fetchProducts();
+        setProducts(allProducts);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
     fetchData();
   }, []);
-
-  const fetchData = async () => {
-    try {
-      const response = await fetch(
-        `https://run.mocky.io/v3/b54fe93f-f5a1-426b-a76c-e43d246901fd`,
-        {
-          next: {
-            revalidate: 60,
-          },
-        }
-      );
-
-      if (response.ok) {
-        const jsonData = await response.json();
-        setProducts(jsonData.products);
-      } else {
-        console.error("Failed to fetch data");
-      }
-    } catch (error) {
-      console.error("An error occurred while fetching data:", error);
-    }
-  };
 
   const product = products.find(
     (product) => product.id === parseInt(id as string, 10)
@@ -49,11 +32,12 @@ const FetchProducts = ({ params }: { params: ProductParams }) => {
           id={product.id}
           name={product.name}
           price={product.price}
+          currency={product.currency}
           category={product.category}
           description={product.description}
         />
       ) : (
-        <p>Loading ...</p>
+        <p className="flex justify-center items-center">Loading...</p>
       )}
     </>
   );
