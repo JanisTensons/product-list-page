@@ -2,7 +2,7 @@ import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import Home from "../page";
 import "@testing-library/jest-dom";
-import SearchForm from "../components/Search";
+import SearchForm from "../components/SearchForm";
 
 test("should have search bar", async () => {
   render(<Home />);
