@@ -4,8 +4,6 @@ import { MouseEventHandler } from "react";
 export interface PaginationProps {
   productsPerPage: number;
   totalProducts: number;
-  previousPage: number | null;
-  nextPage: number | null;
   currentPage: number;
   paginate: (pageNumber: number) => void;
 }
