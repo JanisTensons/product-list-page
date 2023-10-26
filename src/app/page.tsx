@@ -3,7 +3,7 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import { fetchProducts } from "../../utils";
 import ProductsList from "./components/ProductsList";
-import SearchForm from "./components/Search";
+import SearchForm from "./components/SearchForm";
 import { ProductProps } from "../../types";
 import { Pagination } from "./components";
 
@@ -12,11 +12,9 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState<ProductProps[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [previousPage, setPreviousPage] = useState<number | null>(null);
-  const [nextPage, setNextPage] = useState<number | null>(1);
   const [loading, setLoading] = useState(true);
 
-  const productsPerPage = 5;
+  const productsPerPage = 10;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -51,12 +49,6 @@ export default function Home() {
 
   const paginate = (pageNumber: number) => {
     setCurrentPage(pageNumber);
-    setPreviousPage(pageNumber > 1 ? pageNumber - 1 : null);
-    setNextPage(
-      currentPage * productsPerPage < filteredProducts.length
-        ? currentPage + 1
-        : null
-    );
   };
 
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -107,8 +99,6 @@ export default function Home() {
             productsPerPage={productsPerPage}
             totalProducts={filteredProducts.length}
             currentPage={currentPage}
-            previousPage={previousPage}
-            nextPage={nextPage}
             paginate={paginate}
           />
         </div>
