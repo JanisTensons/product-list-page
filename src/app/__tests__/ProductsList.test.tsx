@@ -14,6 +14,7 @@ test("should render product details correctly", () => {
     id: 1,
     name: "Apple",
     price: 10.0,
+    currency: "EUR",
     category: "Category A",
     description: "Description for Product 1",
   };
@@ -23,6 +24,7 @@ test("should render product details correctly", () => {
       id={product.id}
       name={product.name}
       price={product.price}
+      currency={product.currency}
       category={product.category}
       description={product.description}
     />
