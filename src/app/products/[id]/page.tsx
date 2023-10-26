@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { ProductProps } from "../../../../types";
 import { fetchProducts } from "../../../../utils";
 
-const FetchProducts = ({ params }: { params: ProductProps }) => {
+const ProductDetails = ({ params }: { params: ProductProps }) => {
   const [products, setProducts] = useState<ProductProps[]>([]);
   const id = params.id;
 
@@ -43,4 +43,4 @@ const FetchProducts = ({ params }: { params: ProductProps }) => {
   );
 };
 
-export default FetchProducts;
+export default ProductDetails;
